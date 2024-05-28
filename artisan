@@ -1,0 +1,66 @@
+import os
+import sys
+from lib.kernel.cli import CliKernel
+
+#--------------------------------------------------------------------------
+# Folders de la solución
+#--------------------------------------------------------------------------
+#
+# En esta seccion se deben encontrar las carpetas que harán parte integral
+# de la solucion, por defecto se encuentran las carpetas del Esqueleto
+# default de Laraflask
+#
+#--------------------------------------------------------------------------
+paths = [
+    'app',
+    'bootstrap',
+    'config',
+    'public',
+    'routes',
+    'resources',
+    'storage',
+    'tests',
+    'src'
+]
+
+#--------------------------------------------------------------------------
+# Registar Paths
+#--------------------------------------------------------------------------
+#
+# En esta seccion registraremos los archivos de nuestra solicion en el
+# BasePath de este proyecto.
+#
+#--------------------------------------------------------------------------
+basepath = os.path.join(os.path.abspath(os.path.dirname(__file__)))
+
+if basepath not in sys.path:
+    sys.path.append(basepath)
+
+for folder in paths:
+    for root, dirs, files in os.walk(os.path.join(basepath, folder)):
+        if root not in sys.path:
+            sys.path.append(root)
+
+#--------------------------------------------------------------------------
+# Ejecutar la Aplicación Artisan
+#--------------------------------------------------------------------------
+#
+# Cuando ejecutamos la aplicación de consola, el comando actual de la CLI se ejecutará
+# en esta consola y la respuesta se enviará de vuelta a un terminal u otro dispositivo
+# de salida para los desarrolladores. ¡Aquí vamos!
+#
+#--------------------------------------------------------------------------
+CliKernel(
+    input=sys.argv
+).run()
+
+#--------------------------------------------------------------------------
+# Apagar la Aplicación
+#--------------------------------------------------------------------------
+#
+# Una vez que Artisan haya terminado de ejecutarse, lanzaremos los eventos de apagado
+# para que cualquier trabajo final pueda ser realizado por la aplicación antes de
+# apagar el proceso. Esta es la última acción que ocurre en la solicitud.
+#
+#--------------------------------------------------------------------------
+sys.exit()

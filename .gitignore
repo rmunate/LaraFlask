@@ -1,0 +1,15 @@
+# Ignorar todos los contenidos dentro de estos directorios de manera recursiva
+/storage/session/
+/storage/log/
+
+# Ignorar los archivos relacionados con la compilación de Python
+__pycache__/
+
+# Ignorar archivos JSON dentro del directorio 'bootstrap'
+bootstrap/cache/*.json
+
+# Ignorar el archivo 'web.config'
+web.config
+
+# Ignorar el archivo de configuración .env
+.env
